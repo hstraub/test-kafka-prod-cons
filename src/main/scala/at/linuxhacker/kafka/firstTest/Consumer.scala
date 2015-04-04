@@ -1,4 +1,4 @@
-package at.llinuxhacker.kafka.firstTest
+package at.linuxhacker.kafka.firstTest
 
 import kafka.consumer.ConsumerConfig
 import kafka.consumer.KafkaStream

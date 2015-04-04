@@ -1,4 +1,4 @@
-package at.llinuxhacker.kafka.firstTest
+package at.linuxhacker.kafka.firstTest
 
 import kafka.producer.{KeyedMessage, Producer, ProducerConfig}
 import java.util.Properties
