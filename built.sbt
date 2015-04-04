@@ -5,6 +5,8 @@ lazy val commonSettings = Seq(
   name := "KafkaTest"
 )
 
+lazy val root = (project in file(".")).
+  settings(commonSettings: _*)
 
 resolvers ++= Seq("snapshots" at "http://oss.sonatype.org/content/repositories/snapshots",
   "releases" at "http://oss.sonatype.org/content/repositories/releases",
