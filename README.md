@@ -57,6 +57,8 @@ Nr 3. The test Actor System creates a receiver and a sender actor.
 
 # Failure scenarios and Actor TestApp
 
+## Kafka Server is not reachable
+
 Starting the TestApp and then stop the kafka-server:
 
 * The Kafka Producer throws an Exception
@@ -133,6 +135,28 @@ Received: message nr 7
 Received: message nr 8
 ```
 
+## Zookeeper Server is not reachable
+
+Starting the TestApp and then stop the Zoopkeeper server:
+
+* No problem sending and receiving messages
+* After 10 sending blocks the TestApp do a system.shutdown. 
+* The Sender ( Producer ) can do this without problems. 
+* The Receiver( Consumer ) hangs, because the status should be stored in the Zookeeper. 
+* After starting the Zookeeper Server the Receiver ( Consumer ) can finished the shutdown.
+
+```
+[INFO] [04/06/2015 01:00:51.397] [TestApp-akka.actor.default-dispatcher-2] [akka://TestApp/user/Sender] received: test message nr 9
+Received: message nr 3
+Received: message nr 4
+Received: message nr 5
+Received: message nr 6
+Received: message nr 7
+Received: message nr 8
+Received: message nr 9
+[INFO] [04/06/2015 01:01:01.407] [TestApp-akka.actor.default-dispatcher-5] [akka://TestApp/user/Sender] Kafka Producer stopped.
+[INFO] [04/06/2015 01:07:19.766] [TestApp-akka.actor.default-dispatcher-6] [akka://TestApp/user/Receiver] Consumer shutdown finished.
+```
 
 # TODO:
 
