@@ -17,6 +17,7 @@ val akkaVersion = "2.3.9"
   
 libraryDependencies ++= Seq(
   "org.apache.kafka" % "kafka_2.11" % "0.8.2.1",
+  "org.scala-lang.modules" %% "scala-async" % "0.9.2",
   "com.typesafe.akka" %% "akka-kernel" % akkaVersion,
   "com.typesafe.akka" %% "akka-actor" % akkaVersion,
   "com.typesafe.akka" % "akka-slf4j_2.11" % akkaVersion  
