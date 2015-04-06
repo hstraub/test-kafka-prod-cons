@@ -20,7 +20,8 @@ libraryDependencies ++= Seq(
   "org.scala-lang.modules" %% "scala-async" % "0.9.2",
   "com.typesafe.akka" %% "akka-kernel" % akkaVersion,
   "com.typesafe.akka" %% "akka-actor" % akkaVersion,
-  "com.typesafe.akka" % "akka-slf4j_2.11" % akkaVersion  
+  "com.typesafe.akka" % "akka-slf4j_2.11" % akkaVersion,
+  "org.zeromq" % "jeromq" % "0.3.4"  
 )
 
 

@@ -1,14 +1,11 @@
 package at.linuxhacker.kafka.actors
 
-import akka.actor.{ Actor, ActorSystem, ActorRef, Props }
-import akka.actor.ActorLogging
+import akka.actor.{ Actor, ActorSystem, ActorRef, Props, ActorLogging, ActorPath }
 import kafka.producer.{KeyedMessage, Producer, ProducerConfig}
 import java.util.Properties
 import kafka.consumer.{ Consumer, ConsumerConfig, ConsumerConnector }
 import scala.async.Async.{async, await}
 import akka.dispatch.ExecutionContexts
-import akka.actor.ActorPath
-//import sun.net.httpserver.ServerImpl.DefaultExecutor
 
 case class Register( actorPath: ActorPath )
 case class Unregister( actorPath: ActorPath )
