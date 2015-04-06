@@ -162,4 +162,4 @@ Received: message nr 9
 
 * Using another Thread Pool für the IO Blocking operations.
 * Simulate a Receiver Exception. With the register / unregister logic there are lost messages. Actor persistence?
-* Add a ZeroMQ subscriber and publish this messages into Kafka
+* <s>Add a ZeroMQ subscriber and publish this messages into Kafka</s>
