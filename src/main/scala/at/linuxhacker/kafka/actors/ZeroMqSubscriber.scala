@@ -7,7 +7,7 @@ import akka.dispatch.ExecutionContexts
 
 case class ZMQMessage( content: String )
 
-class ZeroMqSubscriber( subscriberAddress: String ) extends Actor with ActorLogging {
+class ZeroMqSubscriber( subscriberAddress: String, sendTo: ActorPath ) extends Actor with ActorLogging {
   
   log.info( "ZeroMqSubscriber created")
 
@@ -34,6 +34,7 @@ class ZeroMqSubscriber( subscriberAddress: String ) extends Actor with ActorLogg
   def receive = {
     case m: ZMQMessage =>
       log.info( "Receiving ZMQMessage: " + m.content )
+      context.actorSelection( sendTo ) ! SendMessage( "test", m.content )
   }
   
   override def postStop = {

@@ -13,7 +13,7 @@ object TestApp extends App {
   val myConsumer1 = system.actorOf( Props( classOf[MyConsumer], 1 ), "MyConsumer" + 1 )
   val myConsumer2 = system.actorOf( Props( classOf[MyConsumer], 2 ), "MyConsumer" + 2 )
   val receiver = system.actorOf( propsReceiver, "Receiver" )
-  val zmqSubscriber = system.actorOf( Props( classOf[ZeroMqSubscriber], "tcp://localhost:5595" ) )
+  val zmqSubscriber = system.actorOf( Props( classOf[ZeroMqSubscriber], "tcp://localhost:5595", sender.path ) )
 
   for ( x <- 1 until 10 ) {
     for ( i <- 1 until 10 )
