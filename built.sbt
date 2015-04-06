@@ -1,9 +1,15 @@
+import NativePackagerKeys._
+
+enablePlugins( JavaAppPackaging )
+
 lazy val commonSettings = Seq(
   organization := "at.linuxhacker",
   version := "0.1",
   scalaVersion := "2.11.5",
   name := "KafkaTest"
 )
+
+mainClass in Compile := Some( "at.linuxhacker.kafka.actorSystem.TestApp" )
 
 lazy val root = (project in file(".")).
   settings(commonSettings: _*)
