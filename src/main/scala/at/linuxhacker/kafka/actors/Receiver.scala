@@ -7,7 +7,15 @@ import java.util.Properties
 import kafka.consumer.{ Consumer, ConsumerConfig, ConsumerConnector }
 import scala.async.Async.{async, await}
 import akka.dispatch.ExecutionContexts
+import akka.actor.ActorPath
 //import sun.net.httpserver.ServerImpl.DefaultExecutor
+
+case class Register( actorPath: ActorPath )
+case class Unregister( actorPath: ActorPath )
+case class ReceivedMessage( topic: String, message: String )
+
+case class Registered( )
+case class Unregistered( )
 
 class Receiver( zookeeper: String, topic: String, groupId: String) 
       extends Actor with ActorLogging {
@@ -22,6 +30,8 @@ class Receiver( zookeeper: String, topic: String, groupId: String)
  
   var consumer: ConsumerConnector = null
   val topicCount = Map[String,Int]( "test" -> 1 )
+  
+  var registeredConsumers = scala.collection.mutable.Set[ActorPath]( )
 
   def kafkaReceiverLoop( ): Unit = {
     val consumerStreams = consumer.createMessageStreams(topicCount)
@@ -38,9 +48,29 @@ class Receiver( zookeeper: String, topic: String, groupId: String)
 
   override def postStop = {
     consumer.shutdown
+    registeredConsumers.foreach( x => context.actorSelection( x ) ! Unregistered( ) )
     log.info( "Consumer shutdown finished." )
   }
   def receive = {
-    case m: String => println( "Received: " + m )
+    case r: Register =>
+      log.info( "Register: " + r )
+      registeredConsumers.add( r.actorPath )
+      sender ! Registered( )
+      
+    case m: String => 
+      log.info( "Received: " + m )
+      if ( m contains "nr 3" )
+        throw new Exception( "Testexception" )
+      registeredConsumers.foreach { x =>
+        context.actorSelection( x ) ! ReceivedMessage( topic, m )
+      }
+      
+    case u: Unregister =>
+      log.info( "Unregister: " + u )
+      if ( registeredConsumers contains u.actorPath ) 
+        registeredConsumers.remove( u.actorPath )
+      sender ! Unregistered( )
+          
+
   }
 }
