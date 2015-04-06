@@ -19,6 +19,10 @@ and start in one Console a Consumer and in the other a Producer.
 sbt eclipse
 ```
 
+# Java Application in a Zip File
+
+``` sbt universal:packageBin```
+
 # Standalone Jar
 
 ```
