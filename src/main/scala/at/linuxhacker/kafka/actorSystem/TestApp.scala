@@ -11,7 +11,8 @@ object TestApp extends App {
   val propsSender = Props( classOf[Sender], "localhost:9092" )
   val sender = system.actorOf( propsSender, "Sender" )
   val propsReceiver = Props( classOf[Receiver], "localhost:2181", "test", "akkaReveiver")
-  val myConsumer1 = system.actorOf( Props[MyConsumer1], "MyConsumer1" )
+  val myConsumer1 = system.actorOf( Props( classOf[MyConsumer], 1 ), "MyConsumer" + 1 )
+  val myConsumer2 = system.actorOf( Props( classOf[MyConsumer], 2 ), "MyConsumer" + 2 )
   val receiver = system.actorOf( propsReceiver, "Receiver" )
 
   for ( x <- 1 until 10 ) {

@@ -59,7 +59,7 @@ class Receiver( zookeeper: String, topic: String, groupId: String)
       
     case m: String => 
       log.info( "Received: " + m )
-      if ( m contains "nr 3" )
+      if ( m contains "loop nr 2 message nr 6" )
         throw new Exception( "Testexception" )
       registeredConsumers.foreach { x =>
         context.actorSelection( x ) ! ReceivedMessage( topic, m )

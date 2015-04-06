@@ -4,7 +4,7 @@ import akka.actor.Actor
 import akka.actor.ActorLogging
 //import at.linuxhacker.kafka.actors._
 
-class MyConsumer1 extends Actor with ActorLogging {
+class MyConsumer( nr: Int ) extends Actor with ActorLogging {
 
   val receiverPath = "/user/Receiver"
   
