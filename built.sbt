@@ -14,6 +14,13 @@ mainClass in Compile := Some( "at.linuxhacker.kafka.actorSystem.TestApp" )
 lazy val root = (project in file(".")).
   settings(commonSettings: _*)
 
+mappings in Universal <+= (packageBin in Compile, sourceDirectory ) map { (_, src) =>
+    // we are using the reference.conf as default application.conf
+    // the user can override settings here
+    val conf = src / "main" / "resources" / "application.conf"
+    conf -> "conf/application.conf"
+}
+
 resolvers ++= Seq("snapshots" at "http://oss.sonatype.org/content/repositories/snapshots",
   "releases" at "http://oss.sonatype.org/content/repositories/releases",
   "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases" )
