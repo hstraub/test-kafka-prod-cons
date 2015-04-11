@@ -5,7 +5,7 @@ enablePlugins( JavaAppPackaging )
 lazy val commonSettings = Seq(
   organization := "at.linuxhacker",
   version := "0.1",
-  scalaVersion := "2.11.5",
+  scalaVersion := "2.11.6",
   name := "KafkaTest"
 )
 
