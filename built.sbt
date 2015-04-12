@@ -29,6 +29,8 @@ mappings in Universal <+= (packageBin in Compile, sourceDirectory ) map { (_, sr
     conf -> "conf/application.conf"
 }
 
+//javaOptions in Universal ++= Seq("-Dconfig.file=${{app_home}}/conf/application.conf")
+
 resolvers ++= Seq("snapshots" at "http://oss.sonatype.org/content/repositories/snapshots",
   "releases" at "http://oss.sonatype.org/content/repositories/releases",
   "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases" )
