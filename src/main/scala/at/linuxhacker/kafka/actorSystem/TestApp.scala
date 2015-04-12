@@ -22,7 +22,5 @@ object TestApp extends App {
       sender ! SendMessage( "test", "loop nr " + x + " message nr " + i )
     Thread.sleep( 5000 )
   }
-  
-  Thread.sleep( 5000 )
-  system.shutdown
+
 }
