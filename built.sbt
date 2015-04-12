@@ -1,6 +1,4 @@
-import NativePackagerKeys._
-
-enablePlugins( JavaAppPackaging )
+enablePlugins( JavaServerAppPackaging )
 
 lazy val commonSettings = Seq(
   organization := "at.linuxhacker",
@@ -13,6 +11,16 @@ mainClass in Compile := Some( "at.linuxhacker.kafka.actorSystem.TestApp" )
 
 lazy val root = (project in file(".")).
   settings(commonSettings: _*)
+  
+maintainer in Linux := "Herbert Straub <herbert@linuxhacker.at>"
+
+packageSummary in Linux := "Custom application configuration"
+
+packageDescription := "Custom application configuration"
+
+rpmVendor := "Herbert Straub"
+
+rpmLicense := Some( "GNU/GPLv3" )
 
 mappings in Universal <+= (packageBin in Compile, sourceDirectory ) map { (_, src) =>
     // we are using the reference.conf as default application.conf
