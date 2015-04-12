@@ -1,1 +1,1 @@
-JAVA_OPTS="-Dconfig.file=/usr/share/${{app_name}}/conf/application.conf $JAVA_OPTS"
+JAVA_OPTS="-Dconfig.file=${{chdir}}/conf/application.conf $JAVA_OPTS"
